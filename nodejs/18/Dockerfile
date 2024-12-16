@@ -14,12 +14,12 @@ RUN         npm install npm@10.x.x typescript ts-node @types/node --location=glo
 RUN         npm install -g corepack
 RUN         corepack enable
 RUN         corepack prepare pnpm@latest --activate
+RUN sysctl -w kernel.unprivileged_userns_clone=1
 
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
 
-RUN sysctl -w kernel.unprivileged_userns_clone=1
 
 STOPSIGNAL SIGINT
 
