@@ -19,6 +19,8 @@ USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
 
+RUN sysctl -w kernel.unprivileged_userns_clone=1
+
 STOPSIGNAL SIGINT
 
 COPY        --chown=container:container ./../entrypoint.sh /entrypoint.sh
